@@ -1,0 +1,8 @@
+crawl4ai
+chromadb
+sentence-transformers
+openai
+gradio
+python-dotenv
+nest_asyncio
+playwright
