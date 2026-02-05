@@ -16,7 +16,49 @@
 
 ## 🏗️ System Architecture
 
-![Architecture Diagram](https://mermaid.ink/img/pako:eNqdVdtu2zgQ_RWCjy1QO06c9KXFokC3C7SLbZCiD70wDI2OrayRREo-JAvD_76kLMuyk-SDscBwZs6cMzOcvmClKkEDq_S6-IJVzIGeK1sK-1a8fl3e3t3eP_Ffz99_Xb-Vz7e3D_wX5-3XzfLb_fPtCj4t_y5vH575L8ufXzff7leL77cr_ru8eXh4usPPDzeLxyX8tHj4fn33yM_Lh_vvS_g5v3944L-eHm5-L5ffHnj5cP_1-ft9Wcr6u_x5_fR0u_yxfH7kF375eH_7cMs_PpSr9Wq1glaU0K4Q9VwY621d1dAYbW3F9FKYWmpboO1FaYXFjFvjK91aW-pKe1vKChYwN2XF_zCnhS4r3UBlq1JbsFDrQnujK21gAS1LbcVb66R1FiyMqbQqoa5qrcFCo3WhwYqF1oVW0FpdaLBgYaxSKs_g19rZSoMFk9pWpS5ggTldGgtWDNVKa7Awo0urwAK6qrQutAYLjbQVC72uNNirO9vWWoEFrEpd8D_C1BqtjQILRttKgwWTopYVWAipS63AgtGl1mDBpNZKgwW01rYqYD4kK0vtwAIWeluwcFZZXWiwgNGl0mDhTKW0BgsYq63OsQ8ZtdI6x35I10aDhRldGg0W0KXWYOEsdWnBgpG61BoscKkLrQoYDWZ0aRRYwFhddY49yKiVBgsYq63OcRwZXVrtHOeRsdK2zHEead1aFziPjC6tco7zSOvWVrnAeWRsaatc4DwyprQVC5xHxpS2yiXOI2NKW-US55Exta1yifPImNJWucR5ZExpK1ziPDImtVUucR4Zk9oqlziPjEltlUucR8aktsoVziNjSlvlCueRManLHOdZZEzqyhznWWRMW5njPIuMaV3mOM8iY1qXOc6zyJjWZY7zLDKmdZnzPCuRMantHOdZZExrO8d5FhlT2jrPs8iY0tZ5nkXGtK7yPMy6yJjWdZ5nkTGt6zzPImNa13meRca0rvM8i4xpW5d5nrfImLb1eZ63yJi29Xmet8iYtvV5nrfImLZ1nuddZExre57nXTQY09qe53kXGdPanud5FxlTts7zvIuMKVuf53kXGVO2znO-i4wpa5_nfBcZU9Y-z_kuMqasfZ7zXWRMWfs857vImLa1z_O-i4xpa5_nfBcZ07b2ec53kTFt6zznu8iYtnWe811kTNva5znfRca0rc9zvgv6hWlb--_Pdy1kTFv77893LWRMW_vvz3ctZExb--_Pdy1kTFv77893LWRMW_vvz3ctZExb--_Pdy1kTFv77893LWRMW_vvz3ctZExb--_Pdy1kTFv/7893LWRMW_vvz38tZExb--_Pfy1kTFv7n_NlFxlT1v7nfNlFxpSdz3mZRcaUnc95mUXGlJ3PeZlFxpSdz3mZRcaUnc95mUXGlJ3PeZlFxpSdm_NlFxlTdm7Ol11kTNm5OV920UJM2bk5X3aRMWXn5nzZRcaUnZvzbRcZU3ZuG-fbLjKmbN02zrdLtBBTdm7Ol11kTNm5OV92kTFp5y5w3kWDSVk359suMiZlned820XGlK3P820XGVO2Ps-3XWRM2fo833aRMWXr83zbRcaUrc_zbRcZU7Y-z7ddZEzZ-jzfdpExZevzfNtFxpStz_NtFxlTtj7Pt11kTNn6PN92kTFt6_N820XGtK3P820XGdO2Ps-3XWRM2_o833aRMW3r83zbRca0rc_zbRcZ07Y-z7ddZEzbuq1z7WKM6Vq3da7d0WBKW7c1z7WLMabrtsa5di3GlK7bGu3axRjTdWtz7VqMKV23Nc61azGma7fWuXYtxtSu2xrn2sUY03Vb41y7GGO6bmuca9diTOm6rXGuXYsxXbc1zrVrMaZr3da5di3GlK7bOteuxZiu2xrn2sUY03Vb41y7GGO6bmuca9diTNe6rXGuXYsxXeu2xrl2LcbUrtsa59q1GNN1W-Ncu5hium5rnGsXY0zXbc1z7WKM6bqtca5dizFd67Z2LcbUrts6167FmK51W-PauRhjuuZ5rl2MMV3zPNcuxpiueZ5rF2NM1zzPtYsxpmu91rl2LcbUrnea59q1GNN1z3PtYozpmufatRjTNc-1izGma55rF2NM1zzXrv9gTNd6rXPtosGYrnmecxdiTNd6znmZMabrOedlxpiu55yXGWO6nnNeZozpes55mTGmy3qZcabrcplxpstyVmaM6XJeZozpct4fM8Z0Oe-PGWO6nPfHjDFdzvtjxpgu5_0xY0yX8_6YIabrG2PK_jGlG2N63htTuTGm570xpRtjer4xpnZjTN8YU7oxpue9MaUbw3X7Py_9_A8DVk9O)
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+    subgraph Scraper ["1. OCR-Enhanced Scraping"]
+        Web[Sports Website] -->|Auth & Crawl| Crawler[Crawl4AI Engine]
+        Crawler -->|Raw HTML| HTML_Parse[HTML Parser]
+        Crawler -->|Image URLs| OCR[Qwen2.5-VL OCR]
+        OCR -->|Extracted Text| Merger[Content Merger]
+        HTML_Parse --> Merger
+        Merger -->|Full Markdown| RawMD[Raw Documents]
+    end
+
+    subgraph Ingestion ["2. Hierarchical Indexing"]
+        RawMD -->|Split| Chunker[recursive_character_splitter]
+        Chunker -->|Detect Packages| Logic{Is Multi-Sport?}
+        
+        Logic -- Yes --> Parent[Parent Doc (Full Context)]
+        Logic -- Yes --> Child[Child Doc (Specific Sport)]
+        Logic -- No --> Child
+        
+        Parent -.->|Store ID| VectorDB[(ChromaDB)]
+        Child -->|Embed via E5| VectorDB
+    end
+
+    subgraph Chatbot ["3. Hand-Crafted RAG Engine"]
+        User[User Query] -->|Input| Memory[Manual History Window]
+        Memory -->|Context| Engine[RAG Engine]
+        
+        Engine -->|Detect Sport| Intent[Intent Classifier]
+        Intent -->|Filter| VectorDB
+        
+        VectorDB -->|Retrieve Children| Hits[Top-K Chunks]
+        Hits -->|Fetch Parent| Context_Build[Context Assembler]
+        
+        Context_Build -->|Prompt| LLM[Databricks/OpenAI LLM]
+        LLM -->|Response| User
+    end
+
+    style Scraper fill:#e1f5fe,stroke:#01579b
+    style Ingestion fill:#fff3e0,stroke:#e65100
+    style Chatbot fill:#e8f5e9,stroke:#1b5e20
+```
 
 *(Note: Actual data pathways include strict firewall traversals, represented here conceptually)*
 
