@@ -60,6 +60,32 @@ flowchart TD
     style Chatbot fill:#e8f5e9,stroke:#1b5e20
 ```
 
+## 📂 Project Structure Explained
+
+```text
+.
+├── 🐳 Dockerfile               # Production container definition
+├── 🐙 docker-compose.yml       # Orchestration (App + Monitoring)
+├── 📦 pyproject.toml           # Modern Python dependency management
+├── 🚀 app.py                   # Main Entry Point (Gradio UI)
+├── 🧪 tests/                   # Unit Verification Suite
+│   └── test_core.py            # Tests for Memory & Logic
+├── 📓 notebooks/               # Jupyter Notebooks for Demo/Analysis
+│   └── demo_ingestion.ipynb    # Runnable Pipeline Demo
+├── 📂 src/ais_rag/             # Core Application Source Code
+│   ├── 🕷️ scraper/             # Data Acquisition Module
+│   │   ├── crawler.py          # Crawl4AI Logic
+│   │   └── ocr_engine.py       # Qwen2.5-VL Integration
+│   ├── ⚙️ ingestion/           # Data Processing Module
+│   │   ├── hierarchy.py        # Parent-Child Logic (Key Feature)
+│   │   └── vector_store.py     # ChromaDB Management
+│   └── 🧠 chatbot/             # RAG Intelligence Module
+│       ├── engine.py           # Retrieval & Generation Chain
+│       ├── memory.py           # Manual Sliding Window Memory
+│       └── llm_client.py       # Databricks/OpenAI Wrapper
+└── 📄 requirements.txt         # Legacy dependency list
+```
+
 *(Note: Actual data pathways include strict firewall traversals, represented here conceptually)*
 
 ## 🔐 Use of Proprietary Data (Why Mock Data?) -- **[READ THIS]**
