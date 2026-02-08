@@ -1,6 +1,6 @@
-# 🏆 SportStream RAG (Advanced Strategies)
+# 📚 Product Catalog RAG (Advanced Architecture)
 
-This project demonstrates **Advanced RAG Strategies** for a Sports Package Assistant.
+This project demonstrates **Advanced RAG Strategies** for a specific **Product Catalog AI Assistant**.
 It moves beyond simple "Semantic Search" to implement **Hierarchical Retrieval** and **Context-Aware Query Rewriting** (V3 Logic).
 
 > **Note**: This project uses a **Minimal Perfect Dataset** concept to clearly demonstrate the *logic* of the strategies.
