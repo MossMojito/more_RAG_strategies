@@ -1,9 +1,9 @@
-# 🏆 AIS Sport RAG (Advanced Strategies)
+# 🏆 SportStream RAG (Advanced Strategies)
 
 This project demonstrates **Advanced RAG Strategies** for a Sports Package Assistant.
 It moves beyond simple "Semantic Search" to implement **Hierarchical Retrieval** and **Context-Aware Query Rewriting** (V3 Logic).
 
-> **Note**: This project uses a **Minimal Perfect Dataset** (consisting only of **NBA** and **Play Ultimate** packages) to clearly demonstrate the *logic* of the strategies without the noise of a full database.
+> **Note**: This project uses a **Minimal Perfect Dataset** concept to clearly demonstrate the *logic* of the strategies.
 
 ---
 
@@ -55,7 +55,6 @@ This repository is a **Reference Implementation** of advanced RAG techniques.
 │       ├── engine.py        # [CRITICAL] State Management & Retrieval Orchestration
 │       ├── memory.py        # Conversation Summary implementation
 │       └── llm_client.py    # LLM Interface
-├── 🚀 app.py                # Reference UI Implementation (Gradio)
 └── 📄 requirements.txt      # Technology Stack
 ```
 
@@ -84,42 +83,3 @@ The system implements a "Sticky State" separate from the conversation history.
 *This project strictly demonstrates the architectural implementation of V3 RAG Logic as defined in `260114_ais_sport7.ipynb`.*
 
 ## 🧪 Verified Scenarios
-
-This codebase is verified to handle:
-1.  **"How much is it?"** (after talking about NBA) -> Rewrites to "How much is NBA?".
-2.  **"What about Ultimate?"** -> Switches context, retrieves Full Parent Doc (listing all apps).
-3.  **"Does it have Netflix?"** -> Correctly answers YES because Parent Doc was retrieved.
-
----
-*Based on logic from `260114_ais_sport7.ipynb` (V3)*
-## 🚀 How to Run (Portfolio Demo)
-
-1.  **Install**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-2.  **Verify Ingestion**:
-    Run `python verify_ingestion.py`.
-    *Output*: You will see it Chunk -> Index -> Store in ChromaDB.
-
-3.  **Run Chatbot**:
-    ```bash
-# Set your OpenAI API Key (or compatible endpoint)
-    export OPENAI_API_KEY="sk-..."
-    python app.py
-    ```
-
-## 🧠 Key Engineering Strategies
-
-### 1. Query Rewriting (`rewriter.py`)
-Users often say "And the other one?". The system uses an LLM call to rewrite this to "And the [Premier League] package?" before searching.
-
-### 2. Intent Routing (`router.py`)
-If a user asks "Show me NBA prices", the Router detects "Sports: NBA" and **hard-filters** the Vector Search to only look at NBA documents, reducing hallucinations from other sports.
-
-### 3. Parent-Child Indexing (`hierarchy.py`)
-We search on small, specific chunks (e.g., "NBA Price") but retrieved the **entire** Parent Document (the full pricing table) to ensure the LLM has complete context to answer complex questions.
-
-### 4. Summary Memory (`memory.py`)
-Instead of keeping 20 raw messages (expensive), the system periodically summarizes the conversation (e.g., "User is looking for a cheap football package") and injects this summary into the system prompt.

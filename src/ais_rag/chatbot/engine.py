@@ -153,7 +153,7 @@ class RAGEngine:
         # 5. System Prompt (V3 Style)
         sport_info = f"Active Sport: {self.active_sport}" if self.active_sport else "Active Sport: None (General)"
         
-        system_prompt = f"""คุณคือ 'น้องกีฬา' ผู้ช่วย AIS ที่เป็นมิตร (v3 Logic)
+        system_prompt = f"""คุณคือ 'SportBot' ผู้ช่วยแนะนำแพ็กเกจกีฬาที่เป็นมิตร (v3 Logic)
 สถานะปัจจุบัน: {sport_info}
 หัวข้อที่คุยอยู่: {self.active_intent}
 

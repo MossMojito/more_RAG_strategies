@@ -41,10 +41,11 @@ SPORT_NAMES = {
     "MULTI": ["ULTIMATE", "PLAY ULTIMATE", "ทุกกีฬา"]
 }
 
-# Manual file mapping for ingestion
+# Reference Mapping for Parent-Child Ingestion Logic
+# (These files are conceptual examples for the hierarchy.py module)
 FILE_TO_SPORT_MAPPING = {
-    "final_NBA_clean.md": {"sports": ["NBA"], "is_multi_sport": False},
-    "final_PLAY_ULTIMATE_clean.md": {
+    "nba_package.md": {"sports": ["NBA"], "is_multi_sport": False},
+    "ultimate_package.md": {
         "sports": ["EPL", "GOLF", "NBA", "NFL", "TENNIS"],
         "is_multi_sport": True
     },
