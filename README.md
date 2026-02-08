@@ -60,9 +60,9 @@ flowchart TD
         VectorDB -->|Retrieve Hits| Hits[Top-K Chunks]
         
         %% Strategy 2: Conditional Hierarchy
-        Hits --> Logic{Is Hierarchy/Bundle?}
-        Logic -- Yes --> Parent[Fetch Parent Doc]
-        Logic -- No --> Chunk[Use Specific Chunk]
+        Hits --> RetrievalLogic{Is Hierarchy/Bundle?}
+        RetrievalLogic -- Yes --> Parent[Fetch Parent Doc]
+        RetrievalLogic -- No --> Chunk[Use Specific Chunk]
         
         Parent --> Assembler
         Chunk --> Assembler
@@ -74,6 +74,9 @@ flowchart TD
     style Scraper fill:#e1f5fe,stroke:#01579b,color:black
     style Ingestion fill:#fff3e0,stroke:#e65100,color:black
     style Chatbot fill:#e8f5e9,stroke:#1b5e20,color:black
+    
+    %% Force black lines
+    linkStyle default stroke:black,stroke-width:2px
 ```
 
 ### 🧠 Deep Dive: The "Context Assembler"
