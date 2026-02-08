@@ -22,36 +22,44 @@ To solve these specific problems, we implemented the **V3 Logic** in this archit
 
 ```mermaid
 flowchart TD
-    subgraph Ingestion ["1. Hierarchical Indexing"]
-        RawMD[Product Manuals] -->|Split| Chunker[Smart Chunker]
-        Chunker -->|Detect Bundles| Logic{Is Bundle?}
+    subgraph Scraper ["1. OCR-Enhanced Scraping"]
+        Web[Sports Website] -->|Auth & Crawl| Crawler[Crawl4AI Engine]
+        Crawler -->|Raw HTML| HTML_Parse[HTML Parser]
+        Crawler -->|Image URLs| OCR[Qwen2.5-VL OCR]
+        OCR -->|Extracted Text| Merger[Content Merger]
+        HTML_Parse --> Merger
+        Merger -->|Full Markdown| RawMD[Raw Documents]
+    end
+
+    subgraph Ingestion ["2. Hierarchical Indexing"]
+        RawMD -->|Split| Chunker[recursive_character_splitter]
+        Chunker -->|Detect Packages| Logic{Is Multi-Sport?}
         
-        Logic -- Yes --> Parent["Parent Doc (Full Catalog)"]
-        Logic -- Yes --> Child["Child Doc (Specific Item)"]
+        Logic -- Yes --> Parent["Parent Doc (Full Context)"]
+        Logic -- Yes --> Child["Child Doc (Specific Sport)"]
         Logic -- No --> Child
         
         Parent -.->|Store ID| VectorDB[(ChromaDB)]
-        Child -->|Embed| VectorDB
+        Child -->|Embed via E5| VectorDB
     end
 
-    subgraph Chatbot ["2. Context-Aware RAG Engine"]
-        User[User Query] -->|Input| Memory[History]
+    subgraph Chatbot ["3. Hand-Crafted RAG Engine"]
+        User[User Query] -->|Input| Memory[Manual History Window]
         Memory -->|Context| Engine[RAG Engine]
         
-        Engine -->|1. Analyze & Rewrite| Rewriter["Combined Rewriter<br>(Intent + Product Detection)"]
-        Rewriter -->|2. Search| VectorDB
+        Engine -->|Detect Sport| Intent[Intent Classifier]
+        Intent -->|Filter| VectorDB
         
-        VectorDB -->|3. Retrieve Children| Hits[Top-K Fragments]
-        Hits -->|4. Fetch Parents| Assembler["Context Assembler<br>(Fuses User Intent + Full Product Docs)"]
+        VectorDB -->|Retrieve Children| Hits[Top-K Chunks]
+        Hits -->|Fetch Parent| Context_Build[Context Assembler]
         
-        Assembler -->|Prompt| LLM[LLM Generation]
+        Context_Build -->|Prompt| LLM[OpenAI / Compatible LLM]
         LLM -->|Response| User
     end
 
+    style Scraper fill:#e1f5fe,stroke:#01579b
     style Ingestion fill:#fff3e0,stroke:#e65100
     style Chatbot fill:#e8f5e9,stroke:#1b5e20
-    style Rewriter fill:#ffccbc,stroke:#bf360c,stroke-width:2px
-    style Assembler fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
 ```
 
 ### 🧠 Deep Dive: The "Context Assembler"
