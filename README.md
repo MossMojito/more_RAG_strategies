@@ -13,8 +13,53 @@ However, simply "feeding" documents to a standard RAG chatbot often fails in thi
 
 ### ✅ Our Solution (V3 Architecture)
 To solve these specific problems, we implemented the **V3 Logic** in this architecture:
-1.   **Sticky Product Context**: The system "remembers" which product is being discussed (e.g., "Pro Plan"), so follow-up questions are always accurate.
-2.   **Parent-Child Retrieval**: When the system finds a specific detail (Child), it automatically retrieves the **complete product information** (Parent), ensuring the AI understands the full picture.
+
+1.   **Advanced Query Rewriting**: The system doesn't just search; it *understands*. It rewrites vague questions (e.g., "price?") into precise, product-specific queries (e.g., "price of Pro Plan") before searching.
+2.   **Sticky Product Context**: It "remembers" the active product, ensuring follow-up questions ("What about the other one?") are correctly routed to the alternative product's context.
+3.   **Parent-Child Retrieval**: When a specific feature is found, the system retrieves the **complete product documentation** (Parent), preventing fragmented answers.
+
+### 🏗️ Architecture Diagram
+
+```mermaid
+flowchart TD
+    subgraph Ingestion ["1. Hierarchical Indexing"]
+        RawMD[Product Manuals] -->|Split| Chunker[Smart Chunker]
+        Chunker -->|Detect Bundles| Logic{Is Bundle?}
+        
+        Logic -- Yes --> Parent["Parent Doc (Full Catalog)"]
+        Logic -- Yes --> Child["Child Doc (Specific Item)"]
+        Logic -- No --> Child
+        
+        Parent -.->|Store ID| VectorDB[(ChromaDB)]
+        Child -->|Embed| VectorDB
+    end
+
+    subgraph Chatbot ["2. Context-Aware RAG Engine"]
+        User[User Query] -->|Input| Memory[History]
+        Memory -->|Context| Engine[RAG Engine]
+        
+        Engine -->|1. Analyze & Rewrite| Rewriter[**Combined Rewriter**<br>(Intent + Product Detection)]
+        Rewriter -->|2. Search| VectorDB
+        
+        VectorDB -->|3. Retrieve Children| Hits[Top-K Fragments]
+        Hits -->|4. Fetch Parents| Assembler[**Context Assembler**<br>(Fuses User Intent + Full Product Docs)]
+        
+        Assembler -->|Prompt| LLM[LLM Generation]
+        LLM -->|Response| User
+    end
+
+    style Ingestion fill:#fff3e0,stroke:#e65100
+    style Chatbot fill:#e8f5e9,stroke:#1b5e20
+    style Rewriter fill:#ffccbc,stroke:#bf360c,stroke-width:2px
+    style Assembler fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+```
+
+### 🧠 Deep Dive: The "Context Assembler"
+The **Context Assembler** is the core of our V3 strategies. It is not just a concatenation of text; it is an intelligent layer that:
+*   **Takes** the *Rewritten Query* (which has the correct product name inserted).
+*   **Matches** it with *Parent Documents* (full context) instead of just small fragments.
+*   **Assembles** a prompt that tells the LLM: *"The user is asking about [Product A]. Here is the Full Brochure. Answer specifically about Pricing."*
+This ensures the LLM has the **Perfect Context** to generate a smooth, accurate answer.
 
 ---
 
