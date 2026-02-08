@@ -38,11 +38,11 @@ flowchart TD
         User[User Query] -->|Input| Memory[History]
         Memory -->|Context| Engine[RAG Engine]
         
-        Engine -->|1. Analyze & Rewrite| Rewriter[**Combined Rewriter**<br>(Intent + Product Detection)]
+        Engine -->|1. Analyze & Rewrite| Rewriter["Combined Rewriter<br>(Intent + Product Detection)"]
         Rewriter -->|2. Search| VectorDB
         
         VectorDB -->|3. Retrieve Children| Hits[Top-K Fragments]
-        Hits -->|4. Fetch Parents| Assembler[**Context Assembler**<br>(Fuses User Intent + Full Product Docs)]
+        Hits -->|4. Fetch Parents| Assembler["Context Assembler<br>(Fuses User Intent + Full Product Docs)"]
         
         Assembler -->|Prompt| LLM[LLM Generation]
         LLM -->|Response| User
