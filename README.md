@@ -60,14 +60,17 @@ flowchart TD
         VectorDB -->|Retrieve Hits| Hits[Top-K Chunks]
         
         %% Strategy 2: Conditional Hierarchy
-        Hits --> RetrievalLogic{Is Hierarchy/Bundle?}
-        RetrievalLogic -- Yes --> FetchedParent[Fetch Parent Doc]
-        RetrievalLogic -- No --> SpecificChunk[Use Specific Chunk]
+        VectorDB -->|Retrieve| Hits[Top-K Raw Results]
+        
+        %% Strategy 2: Per-Result Logic
+        Hits --> RetrievalLogic{Checkpoint:<br>Is Multi-Sport?}
+        RetrievalLogic -- Yes --> FetchedParent[Fetch Parent JSON]
+        RetrievalLogic -- No --> SpecificChunk[Use Chunk Text]
         
         FetchedParent --> Assembler
         SpecificChunk --> Assembler
         
-        Assembler["**Context Assembler**<br>(Fuses Rewritten Query + Best Context)"] -->|Prompt| LLM[LLM Generation]
+        Assembler["**Context Assembler**<br>(Fuses Rewritten Query + Mixed Context)"] -->|Prompt| LLM[LLM Generation]
         LLM -->|Response| User
     end
 
