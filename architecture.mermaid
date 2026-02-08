@@ -31,7 +31,7 @@ flowchart TD
         VectorDB -->|Retrieve Children| Hits[Top-K Chunks]
         Hits -->|Fetch Parent| Context_Build[Context Assembler]
         
-        Context_Build -->|Prompt| LLM[Databricks/OpenAI LLM]
+        Context_Build -->|Prompt| LLM[OpenAI / Compatible LLM]
         LLM -->|Response| User
     end
 

@@ -10,9 +10,10 @@ services:
     volumes:
       - ./data:/app/data # Persist ChromaDB
     environment:
-      - DATABRICKS_TOKEN=${DATABRICKS_TOKEN:-dummy}
-      - DATABRICKS_ENDPOINT=${DATABRICKS_ENDPOINT:-http://localhost:8000}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      # Optional: Advanced configuration for Local LLMs / Compatible APIs
+      # - OPENAI_BASE_URL=${OPENAI_BASE_URL}
+      # - MODEL_NAME=${MODEL_NAME:-gpt-4o}
     restart: unless-stopped
     networks:
       - rag-network

@@ -16,6 +16,7 @@ def run_mock_ingestion():
     # 1. Chunking
     chunker = MarkdownChunker()
     # Ensure raw data dir exists
+    # Ensure raw data dir exists
     if not RAW_DATA_DIR.exists():
         print(f"❌ Data directory not found: {RAW_DATA_DIR}")
         return

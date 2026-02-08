@@ -20,25 +20,30 @@ def respond(message, history):
     return engine.chat(message)
 
 def set_sport(sport_key):
+    # Manual override for V3 logic
     engine.set_sport(sport_key)
     if sport_key:
-        return f"🔒 Selected: {AVAILABLE_SPORTS[sport_key]}"
-    return "🌐 All Sports"
+        return f"🔒 Manually Locked: {AVAILABLE_SPORTS[sport_key]}"
+    return "🌐 Auto-Detect Mode"
 
-with gr.Blocks(title="AIS Sport RAG") as demo:
-    gr.Markdown("# 🏆 AIS Sport Expert Chatbot\nAsk about EPL, NBA, NFL, Golf, Tennis packages!")
+with gr.Blocks(title="AIS Sport RAG (V3)") as demo:
+    gr.Markdown("# 🏆 AIS Sport Expert (V3 Logic)\n**Core Strategy**: Combined Analysis + Hierarchical Retrieval\n**Dataset**: Minimal (NBA + Ultimate Only)")
     
     with gr.Row():
         with gr.Column(scale=1):
-            gr.Markdown("### 🔒 Lock Sport Context")
+            gr.Markdown("### 🔒 Manual Override")
+            gr.Markdown("The AI automatically detects sport, but you can force it here:")
+            
+            # Dynamic buttons from config
             for key, name in AVAILABLE_SPORTS.items():
                 gr.Button(name).click(
                     fn=lambda k=key: set_sport(k), 
-                    outputs=[gr.Label(label="Current Context")]
+                    outputs=[gr.Label(label="Current State")]
                 )
-            gr.Button("🌐 All Sports").click(
+            
+            gr.Button("🌐 Auto-Detect (Reset)").click(
                 fn=lambda: set_sport(None),
-                outputs=[gr.Label(label="Current Context")]
+                outputs=[gr.Label(label="Current State")]
             )
             
         with gr.Column(scale=4):
