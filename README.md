@@ -61,7 +61,6 @@ flowchart TD
     style Scraper fill:#e1f5fe,stroke:#01579b
     style Ingestion fill:#fff3e0,stroke:#e65100
     style Chatbot fill:#e8f5e9,stroke:#1b5e20
-    style Rewriter fill:#ffccbc,stroke:#bf360c,stroke-width:2px
 ```
 
 ### 🧠 Deep Dive: The "Context Assembler"
