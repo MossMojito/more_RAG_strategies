@@ -39,21 +39,24 @@ A common RAG failure is retrieving small chunks that lose broad context. We solv
 ## 📦 Project Structure
 
 ```
-├── data/
-│   ├── synthetic_raw/       # Minimal Dataset (NBA + Ultimate)
-│   ├── processed/           # Parents cache (JSON)
-│   └── vectordb/            # ChromaDB
-├── src/
-│   ├── ais_rag/
-│   │   ├── chatbot/
-│   │   │   ├── engine.py    # Main Logic (State + Retrieval)
-│   │   │   ├── rewriter.py  # V3 Combined Analysis
-│   │   │   └── llm_client.py
-│   │   └── ingestion/
-│   │       ├── chunker.py   # Parent-Child Chunker
-│   │       └── hierarchy.py
-├── app.py                   # Gradio Demo
-└── verify_chat.py           # Verification Script
+.
+├── 📦 pyproject.toml           # Dependency Management
+├── 🚀 app.py                   # Gradio UI Entry Point
+├── 📜 verify_ingestion.py      # Data Ingestion Verification
+├── 📜 verify_chat.py           # End-to-End logic Verification
+├── 📂 data/                    # Data Storage
+│   └── synthetic_raw/          # Clean Markdown Files (Portfolio Ready)
+├── 📂 src/ais_rag/             # Core Application Source Code
+│   ├── ⚙️ ingestion/           # Data Processing
+│   │   ├── hierarchy.py        # Parent-Child Logic (Key Feature)
+│   │   ├── chunker.py          # Smart Chunking
+│   │   └── vector_store.py     # ChromaDB wrapper
+│   └── 🧠 chatbot/             # AI Logic
+│       ├── engine.py           # Orchestrator
+│       ├── rewriter.py         # Query Rewriting Module
+│       ├── memory.py           # Summary Memory Implementation
+│       └── llm_client.py       # Generic LLM Client
+└── 📄 requirements.txt         # Dependencies
 ```
 
 ## 🚀 How to Run
