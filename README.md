@@ -36,52 +36,52 @@ A common RAG failure is retrieving small chunks that lose broad context. We solv
 3.  **UI (`app.py`)**:
     - Simple Gradio interface to demonstrate the chat.
 
-## 📦 Project Structure
+## 📦 Repository Structure
 
-```
+This repository is a **Reference Implementation** of advanced RAG techniques.
+
+```text
 .
-├── 📦 pyproject.toml           # Dependency Management
-├── 🚀 app.py                   # Gradio UI Entry Point
-├── 📜 verify_ingestion.py      # Data Ingestion Verification
-├── 📜 verify_chat.py           # End-to-End logic Verification
-├── 📂 data/                    # Data Storage
-│   └── synthetic_raw/          # Clean Markdown Files (Portfolio Ready)
-├── 📂 src/ais_rag/             # Core Application Source Code
-│   ├── ⚙️ ingestion/           # Data Processing
-│   │   ├── hierarchy.py        # Parent-Child Logic (Key Feature)
-│   │   ├── chunker.py          # Smart Chunking
-│   │   └── vector_store.py     # ChromaDB wrapper
-│   └── 🧠 chatbot/             # AI Logic
-│       ├── engine.py           # Orchestrator
-│       ├── rewriter.py         # Query Rewriting Module
-│       ├── memory.py           # Summary Memory Implementation
-│       └── llm_client.py       # Generic LLM Client
-└── 📄 requirements.txt         # Dependencies
+├── 📂 data/
+│   └── synthetic_raw/       # Minimal Perfect Dataset (NBA + Ultimate)
+│   └── processed/           # Structure for Parent-Child relationships
+├── 📂 src/ais_rag/          # Core Logic
+│   ├── ⚙️ ingestion/
+│   │   ├── hierarchy.py     # [CRITICAL] Implements Parent-Child splitting logic
+│   │   ├── chunker.py       # Markdown chunking strategy
+│   │   └── vector_store.py  # Vector DB Abstraction
+│   └── 🧠 chatbot/
+│       ├── rewriter.py      # [CRITICAL] V3 Combined Analysis (Rewrites + Intent)
+│       ├── engine.py        # [CRITICAL] State Management & Retrieval Orchestration
+│       ├── memory.py        # Conversation Summary implementation
+│       └── llm_client.py    # LLM Interface
+├── 🚀 app.py                # Reference UI Implementation (Gradio)
+└── 📄 requirements.txt      # Technology Stack
 ```
 
-## 🚀 How to Run
+## 🧠 Key Engineering Patterns
 
-1.  **Clone & Install**:
-    ```bash
-    git clone <repo>
-    cd more_RAG_strategies
-    pip install -r requirements.txt
-    ```
+### 1. Unified Analysis Architecture (`rewriter.py`)
+Instead of chaining multiple LLM calls (latency heavy), we use a single purpose-built prompt to:
+*   **Rewrite** the user query.
+*   **Detect Sport** context (e.g., "NBA").
+*   **Identify Intent** (e.g., "Price", "Package Details").
+*   **Return JSON** for deterministic routing.
 
-2.  **Configure**:
-    - Copy `.env.example` to `.env`
-    - Add your `OPENAI_API_KEY`
+### 2. Sticky Context Management (`engine.py`)
+The system implements a "Sticky State" separate from the conversation history.
+*   *User*: "How much is NBA?" -> **State Locked**: `Sport=NBA`
+*   *User*: "What about the other one?" -> **Rewriter** sees state -> **Rewrite**: "What about [NBA] other options?"
 
-3.  **Ingest Data** (Builds the Vector DB):
-    ```bash
-    python verify_ingestion.py
-    ```
+### 3. Hierarchical Retrieval (`hierarchy.py`)
+**Problem**: Vector search retrieves small fragments (Children) that lack context.
+**Solution**:
+1.  **Index**: Small, specific chunks (e.g., "EPL Price is 299").
+2.  **Retrieve**: When a chunk is hit, the system fetches the **Parent Document** (Full Package Table).
+3.  **Generate**: The LLM receives the full context, ensuring it knows that "Play Ultimate" contains both EPL and NBA.
 
-4.  **Run Chat**:
-    ```bash
-    python app.py
-    ```
-    Open http://127.0.0.1:7860
+---
+*This project strictly demonstrates the architectural implementation of V3 RAG Logic as defined in `260114_ais_sport7.ipynb`.*
 
 ## 🧪 Verified Scenarios
 
