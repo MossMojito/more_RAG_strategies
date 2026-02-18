@@ -26,19 +26,19 @@ CHUNK_OVERLAP = 800
 # ===== SPORT MAPPINGS =====
 AVAILABLE_SPORTS = {
     "NBA": "🏀 บาสเก็ตบอล (NBA)",
-    "MULTI": "🏆 ยูนิเวอร์แซล (Play Ultimate)"
+    "MULTI": "🏆 ยูนิเวอร์แซล (Ultimate)"
 }
 
 # Mapping from package names to specific sports or 'MULTI'
 PACKAGE_TO_SPORT = {
-    "PLAY ULTIMATE": "MULTI",
+    "ULTIMATE": "MULTI",
     "NBA": "NBA"
 }
 
 # Synonyms/Variations for sport detection
 SPORT_NAMES = {
     "NBA": ["NBA", "บาสเก็ตบอล", "BASKETBALL"],
-    "MULTI": ["ULTIMATE", "PLAY ULTIMATE", "ทุกกีฬา"]
+    "MULTI": ["ULTIMATE", "ULTIMATE", "ทุกกีฬา"]
 }
 
 # Reference Mapping for Parent-Child Ingestion Logic
