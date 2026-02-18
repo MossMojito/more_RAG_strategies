@@ -1,6 +1,7 @@
 # 📚 Product Catalog Information RAG in Telco
 
 This project demonstrates an **Use-case RAG Architecture** designed for Product Information Systems.
+We built **Advanced RAG + Parent-Document RAG + Multi-Modal RAG** across the multiple RAG pipeline stages including **Multi-modal data extraction** (text + images)
 
 ## 💡 The Use Case
 Imagine you have a system with **thousands of products**. Each product has its own specific information, pricing, and details.
