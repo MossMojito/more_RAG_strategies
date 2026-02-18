@@ -1,4 +1,4 @@
-name: AIS RAG CI Pipeline
+name: RAG CI Pipeline
 
 on:
   push:
